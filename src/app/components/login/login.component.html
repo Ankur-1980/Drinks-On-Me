@@ -1,0 +1,46 @@
+<div class="form-container">
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <div class="form-group">
+      <label class="form-label" for="userName">User Name</label>
+      <input
+        type="text"
+        name="userName"
+        formControlName="userName"
+        placeholder="Enter Username"
+      />
+    </div>
+    <div class="form-error" *ngIf="userName.invalid && userName.touched">
+      Please Enter Your User Name
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="password">Password</label>
+      <input
+        type="text"
+        name="password"
+        formControlName="password"
+        placeholder="Password"
+      />
+    </div>
+    <span class="form-error" *ngIf="password.invalid && password.touched">
+      Please Enter a Password
+    </span>
+    <span
+      class="form-error"
+      *ngIf="password.errors?.minlength && password.touched"
+    >
+      Password must be at least 6 characters
+    </span>
+
+    <button class="submit-button" [disabled]="loginForm.invalid" type="submit">
+      Log In
+    </button>
+  </form>
+  <div class="form-other">
+    New to Drinks On Me?
+    <span
+      ><a routerLink="/register/register"
+        >Click Here to Create a Profile</a
+      ></span
+    >
+  </div>
+</div>
