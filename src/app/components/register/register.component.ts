@@ -47,6 +47,15 @@ export class RegisterComponent implements OnInit {
     );
   }
 
+  onSubmit() {
+    console.log(this.registerForm.value);
+    this.router.navigate(['/login'], {
+      queryParams: {
+        message: 'You have successfully registered! Please login to continue',
+      },
+    });
+  }
+
   get firstName() {
     return this.registerForm.get('firstName');
   }
@@ -66,14 +75,5 @@ export class RegisterComponent implements OnInit {
   }
   get password2() {
     return this.registerForm.get('password2');
-  }
-
-  onSubmit() {
-    console.log(this.registerForm.value);
-    this.router.navigate(['/login'], {
-      queryParams: {
-        message: 'You have successfully registered! Please login to continue',
-      },
-    });
   }
 }
