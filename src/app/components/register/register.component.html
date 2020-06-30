@@ -1,1 +1,126 @@
-<p>register works!</p>
+<div class="form-container">
+  <h1 class="form-headline">Register</h1>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <!-- first name required -->
+    <div class="form-control">
+      <label for="firstName" class="form-label">First Name:</label>
+      <input
+        type="text"
+        class="form-input-text"
+        formControlName="firstName"
+        placeholder="First Name"
+      />
+      <span *ngIf="firstName.touched && firstName.errors?.required">
+        First Name is required
+      </span>
+    </div>
+    <!-- Last Name - not required -->
+    <div class="form-control">
+      <label for="lastName" class="lastName">
+        Last Name:
+      </label>
+      <input
+        type="text"
+        class="form-input-text"
+        formControlName="lastName"
+        placeholder="Last Name"
+      />
+    </div>
+    <!-- email - required -->
+    <div class="form-control">
+      <label for="email" class="form-label">Email:</label>
+      <input
+        type="text"
+        class="form-input-text"
+        formControlName="email"
+        placeholder="Email"
+      />
+    </div>
+    <span class="form-error" *ngIf="email.invalid && email.touched">
+      Please Enter a Valid Email
+    </span>
+    <!-- User Name -->
+    <div class="form-control">
+      <label for="userName" class="form-label">Username:</label>
+      <input
+        type="text"
+        class="form-input-text"
+        formControlName="userName"
+        placeholder="Username"
+      />
+    </div>
+    <span class="form-error" *ngIf="userName.invalid && userName.touched">
+      Please Enter a Username
+    </span>
+    <!-- age - required -->
+    <div class="form-control">
+      <label for="age" class="form-label"> Age</label>
+      <input
+        formControlName="age"
+        class="form-input-age"
+        type="number"
+        placeholder="age"
+      />
+      <span *ngIf="age.errors?.min && age.touched" class="form-error"
+        >You must be at least 21 years old</span
+      >
+    </div>
+    <!-- password 1 -->
+    <div class="form-control">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-input-text"
+        formControlName="password"
+        placeholder="Password"
+      />
+      <span
+        class="form-error"
+        *ngIf="password.touched && password.errors?.required"
+      >
+        Password is required
+      </span>
+      <span
+        class="form-error"
+        *ngIf="password.touched && password.errors?.invalidPassword"
+      >
+        Password should have minimum 6 characters, at least 1 uppercase letter,
+        1 lowercase letter and 1 number
+      </span>
+    </div>
+    <div class="form-control">
+      <label for="password2" class="form-label">Confirm Password</label>
+      <input
+        type="password"
+        class="form-input-text"
+        formControlName="password2"
+        placeholder="Confirm Password"
+      />
+      <span
+        class="form-error"
+        *ngIf="password2.touched && password2.errors?.required"
+      >
+        Confirm Password is required
+      </span>
+      <span
+        class="form-error"
+        *ngIf="password2.touched && password2.errors?.passwordMismatch"
+      >
+        Passwords Do Not Match
+      </span>
+    </div>
+    <div class="form-control">
+      <label for="bio" class="form-label">Bio:</label>
+      <textarea
+        formControlName="bio"
+        name="bio"
+        id="bio"
+        cols="30"
+        rows="10"
+        placeholder="Say something about yourself"
+      ></textarea>
+    </div>
+    <button [disabled]="registerForm.invalid" type="submit">Register</button>
+  </form>
+</div>

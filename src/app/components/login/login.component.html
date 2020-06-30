@@ -1,8 +1,13 @@
 <div class="form-container">
+  <h1 class="form-headline">Login</h1>
+  <div class="success" *ngIf="message">
+    {{ message }}
+  </div>
   <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
     <div class="form-group">
       <label class="form-label" for="userName">User Name</label>
       <input
+        class="form-input-text"
         type="text"
         name="userName"
         formControlName="userName"
@@ -15,6 +20,7 @@
     <div class="form-group">
       <label class="form-label" for="password">Password</label>
       <input
+        class="form-input-text"
         type="text"
         name="password"
         formControlName="password"
@@ -37,10 +43,6 @@
   </form>
   <div class="form-other">
     New to Drinks On Me?
-    <span
-      ><a routerLink="/register/register"
-        >Click Here to Create a Profile</a
-      ></span
-    >
+    <span><a routerLink="/register">Click Here to Create a Profile</a></span>
   </div>
 </div>
